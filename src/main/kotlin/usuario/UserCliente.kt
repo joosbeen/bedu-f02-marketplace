@@ -1,5 +1,6 @@
 package usuario
 
+import sesion.SesionUser
 import java.util.*
 
 /**
@@ -8,9 +9,14 @@ import java.util.*
  */
 class UserCliente(id: Long = Date().time, nombre: String, correo: String, contrasena: String) : Usuario(id, nombre, correo, contrasena) {
     override fun showMenu() {
-        println("-------------------------------")
-        println("---------- menu aqui ----------")
-        println("-------------------------------")
+        println("--------------------------------------------------")
+        println("---------- Bienvenido ${SesionUser.user?.nombre} ----------")
+        println("--------------------------------------------------")
+
+        println("1) Ver productos")
+        println("2) Ver carrito")
+        println("3) Cerrar Sesion")
+
     }
 
 }
