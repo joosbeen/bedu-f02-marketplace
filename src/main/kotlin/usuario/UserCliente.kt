@@ -7,6 +7,9 @@ import utileria.mensajeTitulo
 import producto.Producto
 import producto.Productos
 import sesion.SesionUser
+import utileria.menuClienteInicio
+import ventas.HistorialVentas
+import ventas.Venta
 import java.util.*
 
 /**
@@ -15,16 +18,11 @@ import java.util.*
  */
 class UserCliente(id: Long = Date().time, nombre: String, correo: String, contrasena: String) :
     Usuario(id, nombre, correo, contrasena) {
-    override fun showMenu() {
-        println("----------")
-        println("---------- Bienvenido ${SesionUser.user?.nombre} ----------")
-        println("----------")
 
-        println("1) Ver productos")
-        println("2) Detalle producto")
-        println("3) Ver carrito")
-        println("4) Cerrar Sesion")
-        println()
+    override fun showMenu() {
+
+        menuClienteInicio()
+
         print("Ingresa el número de la opción: ")
         val opcion = readLine()
 
@@ -87,6 +85,9 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
         if (producto == null) {
             mensajeError("Clave de producto invalida.")
             showMenu()
+        } else if (producto.stock == 0) {
+            mensajeError("Producto fuera de stock.")
+            showMenu()
         } else {
             opcionesDetalleProducto(producto)
         }
@@ -126,11 +127,17 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
 
         when (opcion) {
             "1" -> {
-                Carrito.add(producto)
+                //Carrito.add(producto)
+                Productos.addCart(producto)
                 mensajeTitulo("SE AGREGO AL CARRITO!")
                 showMenu()
             }
-            "2" -> comprarProductos()
+            "2" -> {
+                //Carrito.add(producto)
+                Productos.addCart(producto)
+                comprarProductos()
+            }
+
             else -> showMenu()
         }
 
@@ -154,9 +161,12 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
         }
 
         mensajeTitulo("MI CARRITO")
+        var total = 0f
         carritoProductos.forEach {
-            println(it.toString())
+            total += it.precio
+            println("Clave: ${it.id}, Nombre: ${it.nombre}, Precio: $ ${it.precio}, Descripcion: ${it.descripcion}")
         }
+        println("Total de compra: $total")
 
         println("\nMenu opciones:")
         println("1) Comprar")
@@ -205,6 +215,9 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
 
             }
 
+            val venta = Venta(1, carritoProductos, SesionUser.user!!)
+            HistorialVentas.add(venta)
+
             println("Compra en proceso.")
             println("Compra en proceso..")
             println("Compra en proceso...")
@@ -219,3 +232,4 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
     }
 
 }
+

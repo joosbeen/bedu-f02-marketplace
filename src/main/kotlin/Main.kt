@@ -113,6 +113,9 @@ fun iniciar_sesion() {
     val login = usuariosRegistrados.find { it.correo == correo && it.contrasena == contrasena }
 
     if (login != null) {
+
+        println("---------- Bienvenido ${SesionUser.user?.nombre} ----------")
+
         SesionUser.user = login
         SesionUser.user?.showMenu()
     } else {

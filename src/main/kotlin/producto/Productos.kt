@@ -1,15 +1,39 @@
 package producto
 
+import carrito.Carrito
+import utileria.mensajeError
+
 class Productos {
 
     companion object {
         private var productos = mutableListOf<Producto>(
-            Producto(id= 1, nombre = "Producto 1", stock = 3, precio = 99.9f, descripcion = "Descripcion 1"),
-            Producto(id= 2, nombre = "Producto 2", stock = 4, precio = 155.5f, descripcion = "Descripcion 2"),
-            Producto(id= 3, nombre = "Producto 3", stock = 0, precio = 88.9f, descripcion = "Descripcion 3"),
-            Producto(id= 4, nombre = "Producto 4", stock = 3, precio = 81.9f, descripcion = "Descripcion 4"),
-            Producto(id= 5, nombre = "Producto 5", stock = 0, precio = 95.9f, descripcion = "Descripcion 5"),
+            Producto(id = 1, nombre = "Producto 1", stock = 1, precio = 99.9f, descripcion = "Descripcion 1"),
+            Producto(id = 2, nombre = "Producto 2", stock = 4, precio = 155.5f, descripcion = "Descripcion 2"),
+            Producto(id = 3, nombre = "Producto 3", stock = 0, precio = 88.9f, descripcion = "Descripcion 3"),
+            Producto(id = 4, nombre = "Producto 4", stock = 3, precio = 81.9f, descripcion = "Descripcion 4"),
+            Producto(id = 5, nombre = "Producto 5", stock = 0, precio = 95.9f, descripcion = "Descripcion 5"),
         )
+
+        /**
+         * Agregar a carrito
+         */
+        fun addCart(producto: Producto) {
+
+            val findProducto = productos.find { it.id == producto.id }
+            if (findProducto?.stock == 0) {
+                mensajeError("Producto no disponibe")
+                return
+            }
+
+            productos.forEach {
+                if (it.id == producto.id) {
+                    it.stock--
+                }
+            }
+
+            Carrito.add(producto)
+
+        }
 
         /**
          * Obtener lista completa de productos

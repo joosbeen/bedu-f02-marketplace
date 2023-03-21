@@ -1,19 +1,3 @@
 
-R
-"src/main/kotlin/usuario/Usuario.kt,1\d\1db2f406d142362d6749c74ee47a53f7576bcd4f
-R
-"src/main/kotlin/carrito/Carrito.kt,3\1\318c8b07ff37c784f62786a35c4c62a833745bbd
-T
-$src/main/kotlin/sesion/SesionUser.kt,4\3\431dbb3bc0ae75e8a55d47bb570e55f543d2af79
-U
-%src/main/kotlin/producto/Productos.kt,3\0\30884562b9d0c522f3cf245939416f561ff40d41
 T
 $src/main/kotlin/producto/Producto.kt,c\e\ceef4b2bf395d01c895ded8dddd72e29fcc23d8a
-T
-$src/main/kotlin/utileria/mensajes.kt,4\d\4d1240e45a25e832cf7026003b84eabc12884a31
-T
-$src/main/kotlin/usuario/UserAdmin.kt,4\e\4ea38cf3a7ed3d74703d7125fad171c4bea58db9
-G
-src/main/kotlin/Main.kt,d\8\d83ae3847b7d408136086cc5e9e95f5f7c126ed5
-V
-&src/main/kotlin/usuario/UserCliente.kt,2\1\219ebfa7e4571ab39a0057160ec5073c440b7a32
