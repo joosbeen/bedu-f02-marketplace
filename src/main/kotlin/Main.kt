@@ -2,6 +2,8 @@ import sesion.SesionUser
 import usuario.UserAdmin
 import usuario.UserCliente
 import usuario.Usuario
+import utileria.inputRequiered
+import utileria.inputRequieredOptions
 
 var usuariosRegistrados = mutableListOf<Usuario>(
     UserCliente(nombre = "Jose", correo = "jose@gmail.com", contrasena = "12345"),
@@ -22,18 +24,21 @@ fun menu() {
     println("2) INICIAR SESION")
     println("3) SALIR")
 
-    println()
+    val opcion = inputRequieredOptions(
+        "Ingresa el número de la opción: ",
+        "Selecciona una opción valida.",
+        arrayOf("1", "2", "3"),
+        { menu() }
+    )
+
+    /*println()
     println("Ingresa el número de la opción: ")
-    val opcion = readLine()
+    val opcion = readLine()*/
 
     when (opcion) {
         "1" -> registrarse()
         "2" -> iniciar_sesion()
         "3" -> salir()
-        else -> {
-            println("\nSelecciona una opción valida.")
-            menu()
-        }
     }
 }
 
@@ -42,38 +47,23 @@ fun menu() {
  */
 fun registrarse() {
 
-    println("Ingresa tu nombre: ")
-    var nombre = readLine() ?: ""
+    var nombre = inputRequiered(
+        "Ingresa tu nombre: ",
+        "* Nombre es obligatorio.",
+        "Ingresa tu nombre nuevamente: "
+    )
 
-    // Validar nombre no este vacio
-    while (nombre.isEmpty() || nombre.isBlank()) {
-        println("Ingresa nombre valido.!!!")
-        println()
-        println("Ingresa tu nombre nuevamente: ")
-        nombre = readLine() ?: ""
-    }
+    var correo = inputRequiered(
+        "Ingresa tu correo: ",
+        "* Correo es obligatorio.",
+        "Ingresa tu correo nuevamente:"
+    )
 
-    println("Ingresa tu correo: ")
-    var correo = readLine() ?: ""
-
-    // Validar correo no este vacio
-    while (correo.isEmpty() || correo.isBlank()) {
-        println("Ingresa correo valido!!!!.")
-        println()
-        println("Ingresa tu correo nuevamente: ")
-        correo = readLine() ?: ""
-    }
-
-    println("Ingresa tu contraseña: ")
-    var contrasena = readLine() ?: ""
-
-    // Validar contraseña no este vacio
-    while (contrasena.isEmpty() || contrasena.isBlank()) {
-        println("Ingresa una contrasena valida!!!!!.")
-        println()
-        println("Ingresa tu contraseña nuevamente: ")
-        contrasena = readLine() ?: ""
-    }
+    var contrasena = inputRequiered(
+        "Ingresa tu contraseña: ",
+        "* Contraseña es obligatorio.",
+        "Ingresa tu contraseña nuevamente: "
+    )
 
     // Datos son validos
     // Se guardan datos en sesion
@@ -81,34 +71,24 @@ fun registrarse() {
     usuariosRegistrados.add(usuario)
     iniciar_sesion()
 
-
 }
 
 /**
  * Menu principal opcion 2) iniciar sesion
  */
 fun iniciar_sesion() {
-    println("Ingresa tu correo: ")
-    var correo = readLine() ?: ""
 
-    // Validar correo no este vacio
-    while (correo.isEmpty() || correo.isBlank()) {
-        println("Ingresa correo valido!!!!.")
-        println()
-        println("Ingresa tu correo nuevamente: ")
-        correo = readLine() ?: ""
-    }
+    var correo = inputRequiered(
+        "Ingresa tu correo: ",
+        "* Correo es obligatorio.",
+        "Ingresa tu correo nuevamente: "
+    )
 
-    println("Ingresa tu contraseña: ")
-    var contrasena = readLine() ?: ""
-
-    // Validar contraseña no este vacio
-    while (contrasena.isEmpty() || contrasena.isBlank()) {
-        println("Ingresa una contrasena valida!!!!!.")
-        println()
-        println("Ingresa tu contraseña nuevamente: ")
-        contrasena = readLine() ?: ""
-    }
+    var contrasena = inputRequiered(
+        "Ingresa tu contraseña: ",
+        "* Contraseña es obligatorio",
+        "Ingresa tu contraseña nuevamente: "
+    )
 
     val login = usuariosRegistrados.find { it.correo == correo && it.contrasena == contrasena }
 

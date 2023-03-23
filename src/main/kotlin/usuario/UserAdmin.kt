@@ -33,4 +33,12 @@ class UserAdmin(id: Long = Date().time, nombre: String, correo: String, contrase
     private fun opcionVerVentasTotales() {
         val ventasTotales = HistorialVentas.list()
     }
+
+    private fun opcionProductos() {
+        TODO("Not yet implemented")
+    }
+
+    private fun opcionVerClientes() {
+        TODO("Not yet implemented")
+    }
 }

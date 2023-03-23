@@ -2,12 +2,10 @@ package usuario
 
 import carrito.Carrito
 import menu
-import utileria.mensajeError
-import utileria.mensajeTitulo
 import producto.Producto
 import producto.Productos
 import sesion.SesionUser
-import utileria.menuClienteInicio
+import utileria.*
 import ventas.HistorialVentas
 import ventas.Venta
 import java.util.*
@@ -108,10 +106,7 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
         """.trimIndent()
         )
 
-        mensajeError("Opcines: ")
-        println("1) Agregar")
-        println("2) Comprar")
-        println("3) Regresar")
+        menuClienteDetalleProducto()
 
         println("\nIngrese su opcion:")
 
@@ -168,9 +163,7 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
         }
         println("Total de compra: $total")
 
-        println("\nMenu opciones:")
-        println("1) Comprar")
-        println("2) Regresar")
+        menuClienteVerCarrito()
 
         println("\nIngresa una opcion:")
         var opcion = readLine() ?: ""

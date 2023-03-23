@@ -8,6 +8,19 @@ fun menuClienteInicio() {
     println()
 }
 
+fun menuClienteDetalleProducto() {
+    mensajeError("Opcines: ")
+    println("1) Agregar")
+    println("2) Comprar")
+    println("3) Regresar")
+}
+
+fun menuClienteVerCarrito() {
+    println("\nMenu opciones:")
+    println("1) Comprar")
+    println("2) Regresar")
+}
+
 fun menuAdminInicio() {
     println("1) Ventas totales")
     println("2) Productos")
