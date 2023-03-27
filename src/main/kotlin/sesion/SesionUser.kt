@@ -10,9 +10,7 @@ object SesionUser {
 
     var user: Usuario? = null
         set(value) {
-            if (field == null) {
-                field = value
-            }
+            field = value
         }
         get() {
             return field

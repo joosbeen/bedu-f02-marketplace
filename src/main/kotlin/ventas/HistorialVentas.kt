@@ -1,21 +1,33 @@
 package ventas
 
 import producto.Producto
+import producto.Productos
 import usuario.UserCliente
 
 object HistorialVentas {
 
-    private var ventas = mutableListOf<Venta>(
-        Venta(id = 230, productos = mutableListOf(
-            Producto(id = 1, nombre = "Producto 1", stock = 1, precio = 99.9f, descripcion = "Descripcion 1"),
-            Producto(id = 2, nombre = "Producto 2", stock = 4, precio = 155.5f, descripcion = "Descripcion 2")
-        ), usuario = UserCliente(nombre = "Jose", correo = "jose@gmail.com", contrasena = "12345"))
+    private var ventas = mutableListOf(
+        Venta(
+            id = 230,
+            productos = mutableListOf(
+                Productos.findAll()[0],
+                Productos.findAll()[1],
+                Productos.findAll()[2]
+            ),
+            usuario = UserCliente(nombre = "Jose", correo = "jose@gmail.com", contrasena = "12345")
+        )
     )
 
+    /**
+     * Agregar una venta a la lista.
+     */
     fun add(venta: Venta) {
-
+        ventas.add(venta)
     }
 
+    /**
+     * Obtener lista de ventas registradas
+     */
     fun list(): MutableList<Venta> {
         return ventas
     }

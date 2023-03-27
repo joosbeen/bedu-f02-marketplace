@@ -7,6 +7,8 @@ import utileria.inputRequieredOptions
 
 var usuariosRegistrados = mutableListOf<Usuario>(
     UserCliente(nombre = "Jose", correo = "jose@gmail.com", contrasena = "12345"),
+    UserCliente(nombre = "Carlos", correo = "carlos@gmail.com", contrasena = "Carlos12"),
+    UserCliente(nombre = "Juan", correo = "juan@gmail.com", contrasena = "Juan123"),
     UserAdmin(nombre = "Super Admin", correo = "admin@gmail.com", contrasena = "admin123")
 )
 
@@ -30,10 +32,6 @@ fun menu() {
         arrayOf("1", "2", "3"),
         { menu() }
     )
-
-    /*println()
-    println("Ingresa el número de la opción: ")
-    val opcion = readLine()*/
 
     when (opcion) {
         "1" -> registrarse()
@@ -65,8 +63,7 @@ fun registrarse() {
         "Ingresa tu contraseña nuevamente: "
     )
 
-    // Datos son validos
-    // Se guardan datos en sesion
+    /* Guardar datos nuevos del usuario. */
     val usuario = UserCliente(nombre = nombre, correo = correo, contrasena = contrasena)
     usuariosRegistrados.add(usuario)
     iniciar_sesion()
@@ -90,15 +87,16 @@ fun iniciar_sesion() {
         "Ingresa tu contraseña nuevamente: "
     )
 
+    /* Validar datos de usuario */
     val login = usuariosRegistrados.find { it.correo == correo && it.contrasena == contrasena }
 
-    if (login != null) {
+    if (login != null) { /* Si existe el usuario */
 
-        println("---------- Bienvenido ${SesionUser.user?.nombre} ----------")
+        println("---------- Bienvenido ${login.nombre} ----------")
 
         SesionUser.user = login
         SesionUser.user?.showMenu()
-    } else {
+    } else { /* Si no existe el usuario */
         println("Datos de usuario invalidos. Vuelve a intentarlo: \n")
         iniciar_sesion()
     }

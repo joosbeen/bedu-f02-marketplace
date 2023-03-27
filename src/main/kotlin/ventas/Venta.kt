@@ -3,5 +3,4 @@ package ventas
 import producto.Producto
 import usuario.Usuario
 
-class Venta(val id: Int, productos: MutableList<Producto>, usuario: Usuario) {
-}
+data class Venta(val id: Int, val productos: MutableList<Producto>, val usuario: Usuario) {}
