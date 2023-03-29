@@ -2,8 +2,7 @@ import sesion.SesionUser
 import usuario.UserAdmin
 import usuario.UserCliente
 import usuario.Usuario
-import utileria.inputRequiered
-import utileria.inputRequieredOptions
+import utileria.*
 
 var usuariosRegistrados = mutableListOf<Usuario>(
     UserCliente(nombre = "Jose", correo = "jose@gmail.com", contrasena = "12345"),
@@ -45,6 +44,8 @@ fun menu() {
  */
 fun registrarse() {
 
+    mensajeTitulo("REGISTRAR")
+
     var nombre = inputRequiered(
         "Ingresa tu nombre: ",
         "* Nombre es obligatorio.",
@@ -66,6 +67,7 @@ fun registrarse() {
     /* Guardar datos nuevos del usuario. */
     val usuario = UserCliente(nombre = nombre, correo = correo, contrasena = contrasena)
     usuariosRegistrados.add(usuario)
+    println("Registro exitoso!")
     iniciar_sesion()
 
 }
@@ -74,6 +76,8 @@ fun registrarse() {
  * Menu principal opcion 2) iniciar sesion
  */
 fun iniciar_sesion() {
+
+    mensajeTitulo("INICIAR SESION")
 
     var correo = inputRequiered(
         "Ingresa tu correo: ",
@@ -92,12 +96,12 @@ fun iniciar_sesion() {
 
     if (login != null) { /* Si existe el usuario */
 
-        println("---------- Bienvenido ${login.nombre} ----------")
+        mensajeTitulo("Bienvenido ${login.nombre}")
 
         SesionUser.user = login
         SesionUser.user?.showMenu()
     } else { /* Si no existe el usuario */
-        println("Datos de usuario invalidos. Vuelve a intentarlo: \n")
+        mensajeError("Datos de usuario invalidos. Vuelve a intentarlo:")
         iniciar_sesion()
     }
 

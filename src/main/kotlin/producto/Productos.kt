@@ -7,11 +7,11 @@ class Productos {
 
     companion object {
         private var productos = mutableListOf<Producto>(
-            Producto(id = 1, nombre = "Producto 1", stock = 1, precio = 99.9f, descripcion = "Descripcion 1"),
-            Producto(id = 2, nombre = "Producto 2", stock = 4, precio = 155.5f, descripcion = "Descripcion 2"),
-            Producto(id = 3, nombre = "Producto 3", stock = 0, precio = 88.9f, descripcion = "Descripcion 3"),
-            Producto(id = 4, nombre = "Producto 4", stock = 3, precio = 81.9f, descripcion = "Descripcion 4"),
-            Producto(id = 5, nombre = "Producto 5", stock = 0, precio = 95.9f, descripcion = "Descripcion 5"),
+            Producto(id = 1, nombre = "Chamarra Thats Hot Estilo Casual", stock = 1, precio = 299f, descripcion = "Estilo Casual En Poliéster Para Mujer"),
+            Producto(id = 2, nombre = "Tenis adidas", stock = 4, precio = 2111f, descripcion = "Ultrabounce Running Horma Clásica Para Mujer"),
+            Producto(id = 3, nombre = "Playera Reebok", stock = 0, precio = 345f, descripcion = "Wor Melange Tee Deportiva Para Hombre"),
+            Producto(id = 4, nombre = "Short Reebok", stock = 3, precio = 81.9f, descripcion = "Graphic Speed 2.0 Deportivo Para Hombre"),
+            Producto(id = 5, nombre = "Gorra Red Bull Racing", stock = 0, precio = 95.9f, descripcion = "Visera Curva Sergio Perez 2022 Azul Ma"),
         )
 
         /**

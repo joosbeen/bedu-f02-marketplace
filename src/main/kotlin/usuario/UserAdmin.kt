@@ -16,7 +16,6 @@ class UserAdmin(id: Long = Date().time, nombre: String, correo: String, contrase
 
         menuAdminInicio()
 
-        //val opcion = readLine()
         val opciones = arrayOf("1", "2", "3", "4")
         val opcion = inputRequieredOptions(
             "Selecciona una opcion:",
@@ -45,6 +44,7 @@ class UserAdmin(id: Long = Date().time, nombre: String, correo: String, contrase
             val venta: Venta = it
             println("|---------------------")
             println("| Folio: ${it.id}")
+            println("| Cliente: Nombre=${it.usuario.nombre}, Correo=${it.usuario.correo}")
             println("|---------------------")
             it.productos.forEach {
                 println("| Clave: ${it.id}, Nombre: ${it.nombre}, Precio: ${it.precio}")

@@ -15,6 +15,14 @@ object HistorialVentas {
                 Productos.findAll()[2]
             ),
             usuario = UserCliente(nombre = "Jose", correo = "jose@gmail.com", contrasena = "12345")
+        ),
+        Venta(
+            id = 231,
+            productos = mutableListOf(
+                Productos.findAll()[3],
+                Productos.findAll()[4]
+            ),
+            usuario = UserCliente(nombre = "Carlos", correo = "carlos@gmail.com", contrasena = "Carlos12"),
         )
     )
 

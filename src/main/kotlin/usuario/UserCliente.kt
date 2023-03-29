@@ -19,20 +19,20 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
 
     override fun showMenu() {
 
+        mensajeTitulo("MENU")
         menuClienteInicio()
 
-        print("Ingresa el número de la opción: ")
-        val opcion = readLine()
+        val opcion = inputRequieredOptions(
+            "Ingresa el número de la opción: ",
+            "Selecciono una opción invalida.",
+            arrayOf("1", "2", "3", "4")
+        ) { showMenu() }
 
         when (opcion) {
             "1" -> opcionVerProductos()
             "2" -> opcionDetalleProducto()
             "3" -> opcionVerCarrito()
             "4" -> menu()
-            else -> {
-                println("\nSelecciona una opción valida.")
-                showMenu()
-            }
         }
 
     }
@@ -69,11 +69,15 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
      */
     private fun opcionDetalleProducto() {
 
-        println("Ingresa la clave del producto: ")
-        val clave = readLine() ?: ""
+        val clave = inputRequiered(
+            "Ingresa la clave del producto: ",
+            "Clave de producto invalida.",
+            "Ingresa una clave de producto valida: "
+        )
+
         val id = clave.toLongOrNull()
 
-        if (clave.isEmpty() || clave.isBlank() || id == null) {
+        if (id == null) {
             mensajeError("Clave de producto invalida.")
             showMenu()
         }
@@ -108,32 +112,27 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
 
         menuClienteDetalleProducto()
 
-        println("\nIngrese su opcion:")
-
-        var opcion = readLine() ?: ""
         val opciones = arrayOf("1", "2", "3")
-
-        while (opcion.isEmpty() || opcion.isBlank() || !opciones.contains(opcion)) {
-
-            mensajeError("Ingrese una opcion valida.")
-            opcion = readLine() ?: ""
-
-        }
+        val opcion = inputRequiered(
+            "Ingrese su opción:",
+            "Selecciono una opción invalida.",
+            "Ingrese una opción valida.",
+            opciones
+        )
 
         when (opcion) {
             "1" -> {
-                //Carrito.add(producto)
                 Productos.addCart(producto)
                 mensajeTitulo("SE AGREGO AL CARRITO!")
                 showMenu()
             }
+
             "2" -> {
-                //Carrito.add(producto)
                 Productos.addCart(producto)
                 comprarProductos()
             }
 
-            else -> showMenu()
+            "3" -> showMenu()
         }
 
 
@@ -165,16 +164,13 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
 
         menuClienteVerCarrito()
 
-        println("\nIngresa una opcion:")
-        var opcion = readLine() ?: ""
         val opciones = arrayOf("1", "2")
-
-        while (opcion.isEmpty() || opcion.isBlank() || !opciones.contains(opcion)) {
-
-            mensajeError("Ingrese una opcion valida.")
-            opcion = readLine() ?: ""
-
-        }
+        val opcion = inputRequiered(
+            "\nIngresa una opcion:",
+            "Selecciono una opción invalida.",
+            "Ingrese una opción valida.",
+            opciones
+        )
 
         when (opcion) {
             "1" -> comprarProductos()
@@ -192,22 +188,24 @@ class UserCliente(id: Long = Date().time, nombre: String, correo: String, contra
      */
     private fun comprarProductos() {
 
+        mensajeTitulo("COMPRAR PRODCUTOS")
+
         val carritoProductos = Carrito.list()
 
         if (carritoProductos.size == 0) {
             mensajeError("Su carrito se encuentra vacio.")
         } else {
 
-            println("Ingresa tu numero de tarjeta")
-            var opcion = readLine() ?: ""
+            var total = 0f
+            carritoProductos.forEach { total+=it.precio }
 
-            while (opcion.isEmpty() || opcion.isBlank()) {
+            val opcion = inputRequiered(
+                "Ingresa tu numero de tarjeta",
+                "Selecciono una opción invalida.",
+                "Ingrese una opcion valida."
+            )
 
-                mensajeError("Ingrese una opcion valida.")
-                opcion = readLine() ?: ""
-
-            }
-
+            println("=== Total = $${total}")
             val venta = Venta(1, carritoProductos, SesionUser.user!!)
             HistorialVentas.add(venta)
 
