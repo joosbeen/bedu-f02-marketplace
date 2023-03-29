@@ -1,3 +1,4 @@
+import kotlinx.coroutines.*
 import sesion.SesionUser
 import usuario.UserAdmin
 import usuario.UserCliente
@@ -91,6 +92,9 @@ fun iniciar_sesion() {
         "Ingresa tu contraseña nuevamente: "
     )
 
+    println("⌛⌛ Espere un momento estamos validando sus datos. ⌛⌛")
+    pasueHttpRequest(3000)
+
     /* Validar datos de usuario */
     val login = usuariosRegistrados.find { it.correo == correo && it.contrasena == contrasena }
 
@@ -114,4 +118,9 @@ fun salir() {
     println("---------------------------")
     println("----- !VUELVA PRONTO! -----")
     println("---------------------------")
+}
+
+fun pasueHttpRequest(timeMillis: Long) = runBlocking {
+
+    withTimeout(timeMillis) { delay(timeMillis - 1000) }
 }
