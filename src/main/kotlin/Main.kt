@@ -29,9 +29,8 @@ fun menu() {
     val opcion = inputRequieredOptions(
         "Ingresa el número de la opción: ",
         "Selecciona una opción valida.",
-        arrayOf("1", "2", "3"),
-        { menu() }
-    )
+        arrayOf("1", "2", "3")
+    ) { menu() }
 
     when (opcion) {
         "1" -> registrarse()
